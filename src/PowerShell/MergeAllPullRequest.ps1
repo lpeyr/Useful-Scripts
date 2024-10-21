@@ -1,6 +1,6 @@
 function merge
 {
     $prIds = (gh pr list --state open --json number --jq '.[] | .number') -join ","
-    $reviewCommands = $prIds -split "," | ForEach-Object { "gh pr merge $_" }
+    $reviewCommands = $prIds -split "," | ForEach-Object { "gh pr merge $_ --merge -d" }
     $reviewCommands -join ";"
 }
